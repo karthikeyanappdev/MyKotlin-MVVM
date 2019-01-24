@@ -4,7 +4,10 @@ project.ext {
     arch = "1.1.1"
     retrofit = "2.0.2"
     glide ="4.4.0"
-
+    junit = "4.12"
+    espresso ="3.0.2"
+    runner ="1.0.2"
+    mockito ="1.10.19"
 }
 apply plugin: 'com.android.application'
 
@@ -52,7 +55,8 @@ dependencies {
     implementation 'com.google.android:flexbox:1.0.0'
     kapt "com.github.bumptech.glide:compiler:$project.glide"
     kapt "android.arch.lifecycle:compiler:$project.arch"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation "junit:junit:$project.junit"
+    androidTestImplementation "com.android.support.test:runner:$project.runner"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$project.espresso"
+    testImplementation "org.mockito:mockito-core:$project.mockito"
 }
