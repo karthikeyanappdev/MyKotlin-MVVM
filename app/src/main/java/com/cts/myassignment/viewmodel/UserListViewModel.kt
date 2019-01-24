@@ -9,6 +9,10 @@ import com.bumptech.glide.Glide
 import com.cts.myassignment.service.model.Facts
 import com.cts.myassignment.service.repository.ProjectRepository
 
+/**
+ *  Viewmodel and Livedata
+ */
+
 class UserListViewModel(application: Application) : AndroidViewModel(application) {
     var userListObserver : LiveData<Facts>
 

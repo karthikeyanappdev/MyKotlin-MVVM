@@ -13,6 +13,9 @@ import com.cts.myassignment.databinding.RecyclerListItemBinding
 import com.cts.myassignment.service.model.Row
 
 
+/**
+ *    Adapter with Databinging
+ */
 class RecyclerAdapter(val context: Context, private val rowList: MutableList<Row>):RecyclerView.Adapter<RecyclerAdapter.UserViewHolder>() {
 
 

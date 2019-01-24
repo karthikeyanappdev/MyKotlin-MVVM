@@ -23,6 +23,9 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.cts.myassignment.databinding.FragmentUserListBinding
 
+/**
+ *  Fragment with Recyclerview
+ */
 
 class UserListFragment : Fragment() {
 
