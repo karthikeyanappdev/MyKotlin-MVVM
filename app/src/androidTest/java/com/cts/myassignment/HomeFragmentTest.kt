@@ -22,6 +22,17 @@ class HomeFragmentTest {
     public val mActivityRule: ActivityTestRule<HomeScreen> = ActivityTestRule(HomeScreen::class.java)
 
     private lateinit var activity : Activity
+
+    @Test
+    fun lauchHomeScreenTest(){
+        statActivity()
+        mActivityRule.getActivity().runOnUiThread(Runnable {
+
+        })
+        loadingTime()
+        Espresso.onView(ViewMatchers.withId(R.id.fragment_container))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
     @Test
     fun launchHomeFragmentTest(){
         loadFragments()
