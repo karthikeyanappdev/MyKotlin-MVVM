@@ -1,5 +1,8 @@
 package com.cts.myassignment
 
+import android.app.Activity
+import android.content.Intent
+import android.os.SystemClock
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions
@@ -18,6 +21,7 @@ class HomeFragmentTest {
     @JvmField
     public val mActivityRule: ActivityTestRule<HomeScreen> = ActivityTestRule(HomeScreen::class.java)
 
+    private lateinit var activity : Activity
     @Test
     fun launchHomeFragmentTest(){
         loadFragments()
@@ -50,7 +54,13 @@ class HomeFragmentTest {
         mActivityRule.activity.supportFragmentManager.beginTransaction().add(R.id.fragment_container, HomeFragment(), "HomeFragment").commitAllowingStateLoss()
     }
     fun loadingTime(){
-        Thread.sleep(5000)
+        Thread.sleep(2000)
     }
 
+    private fun statActivity() {
+        val intent = Intent()
+        activity = mActivityRule.launchActivity(intent)
+        SystemClock.sleep(1000)
+        activity = Util().getActivityInstance()!!
+    }
 }
