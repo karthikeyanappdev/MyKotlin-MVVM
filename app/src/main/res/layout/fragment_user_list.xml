@@ -2,28 +2,32 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="com.cts.myassignment.viewmodel.IndicatorViewModel"/>
+        <import type="android.view.View"/>
         <variable name="isLoading" type="boolean"/>
     </data>
-    <LinearLayout
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+             android:orientation="vertical">
 
-        <TextView
-                android:id="@+id/loading_projects"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+        <ProgressBar
+                android:id="@+id/progressBar_cyclic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:minWidth="50dp"
                 android:gravity="center_vertical|center_horizontal"
-                android:visibility="gone"
-                android:textAlignment="center"/>
+                android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
 
-            <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:isScrollContainer="false"/>
 
-
-
-    </LinearLayout>
+    </RelativeLayout>
 </layout>

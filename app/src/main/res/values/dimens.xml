@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="list_item_image">100dp</dimen>
+    <dimen name="list_item_image">95dp</dimen>
     <dimen name="list_item_title">20dp</dimen>
     <dimen name="list_item_desc">18dp</dimen>
     <dimen name="margin_top">5dp</dimen>

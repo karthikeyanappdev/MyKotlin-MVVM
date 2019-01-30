@@ -5,14 +5,14 @@ import android.support.v7.app.AppCompatActivity
 import com.cts.myassignment.R
 
 
-class MainActivity : AppCompatActivity() {
+class HomeScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         if(savedInstanceState == null){
-            val fragment = UserListFragment()
-            supportFragmentManager.beginTransaction().add(R.id.fragment_container, fragment, UserListFragment.TAG).commit();
+            val fragment = HomeFragment()
+            supportFragmentManager.beginTransaction().add(R.id.fragment_container, fragment, HomeFragment.TAG).commit();
         }
 
     }

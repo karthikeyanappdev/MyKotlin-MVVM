@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#000063</color>
     <color name="colorAccent">#D81B60</color>
     <color name="list_item_background">#fafafa</color>
+    <color name="list_item_desc">#2c1425</color>
+    <color name="list_item_title">#003366</color>
 </resources>

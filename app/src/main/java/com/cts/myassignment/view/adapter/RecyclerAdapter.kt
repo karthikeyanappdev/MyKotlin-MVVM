@@ -16,11 +16,11 @@ import com.cts.myassignment.service.model.Row
 /**
  *    Adapter with Databinging
  */
-class RecyclerAdapter(val context: Context, private val rowList: MutableList<Row>):RecyclerView.Adapter<RecyclerAdapter.UserViewHolder>() {
+class RecyclerAdapter(private val context: Context, private val rowList: MutableList<Row>):RecyclerView.Adapter<RecyclerAdapter.UserViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.UserViewHolder {
-        val binding = DataBindingUtil.inflate<RecyclerListItemBinding>(LayoutInflater.from(parent.context), com.cts.myassignment.R.layout.recycler_list_item,parent,false)
+        val binding = DataBindingUtil.inflate<RecyclerListItemBinding>(LayoutInflater.from(parent.context), R.layout.recycler_list_item,parent,false)
         return UserViewHolder(binding)
     }
 

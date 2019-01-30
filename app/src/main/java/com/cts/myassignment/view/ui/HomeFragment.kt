@@ -8,11 +8,9 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.annotation.Nullable
 import android.support.v4.app.Fragment
-import android.support.v7.widget.DefaultItemAnimator
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.cts.myassignment.R
+import com.cts.myassignment.databinding.FragmentUserListBinding
 import com.cts.myassignment.service.model.Facts
 import com.cts.myassignment.service.model.Row
 import com.cts.myassignment.view.adapter.RecyclerAdapter
@@ -21,13 +19,13 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
-import com.cts.myassignment.databinding.FragmentUserListBinding
+
 
 /**
  *  Fragment with Recyclerview
  */
 
-class UserListFragment : Fragment() {
+class HomeFragment : Fragment() {
 
     private var binding : FragmentUserListBinding ?= null
     private var rowList = mutableListOf<Row>()
@@ -35,11 +33,11 @@ class UserListFragment : Fragment() {
 
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_user_list, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_list, container, false)
+        setHasOptionsMenu(true)
+        binding?.recyclerView?.layoutManager = getLayoutManager()
         recyclerAdapter = RecyclerAdapter(context as Context, rowList)
         binding?.recyclerView?.adapter = recyclerAdapter
-        binding?.recyclerView?.itemAnimator = DefaultItemAnimator()
-        binding?.recyclerView?.layoutManager = getLayoutManager()
         binding?.isLoading =true
         return binding?.root
     }
@@ -57,7 +55,7 @@ class UserListFragment : Fragment() {
                 binding?.isLoading = false
                 rowList.clear()
                 rowList.addAll(facts.rows)
-                (activity as MainActivity).setActionBarTitle(facts.title)
+                (activity as HomeScreen).setActionBarTitle(facts.title)
                 recyclerAdapter?.notifyDataSetChanged()
             }
         } )
@@ -75,5 +73,27 @@ class UserListFragment : Fragment() {
     companion object {
         val TAG = "ProjectListFragment"
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(com.cts.myassignment.R.menu.mymenu, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?):Boolean {
+        val id = item?.getItemId()
+        when (id) {
+            R.id.refresh -> {
+                if (rowList != null) {
+                    binding?.isLoading =true
+                    recyclerAdapter?.notifyDataSetChanged()
+                    binding?.isLoading =false
+                }
+                return true
+            }
+        }
+        return false
+    }
+
+
 
 }
