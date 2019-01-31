@@ -1,16 +1,10 @@
 package com.cts.myassignment.service.repository
 
 import android.app.Application
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
 import android.content.Context
-import com.cts.myassignment.service.model.Facts
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
@@ -57,37 +51,6 @@ class APIRepository(application: Application) {
             .build()
     }
 
-    companion object {
-        @Volatile
-        var instance: APIRepository? = null
 
-        fun getInstance(application: Application): APIRepository {
-            if (instance == null) {
-                synchronized(APIRepository::class) {
-                    if (instance == null) {
-                        instance = APIRepository(application)
-                    }
-                }
-            }
-            return instance!!
-        }
-
-
-    }
-
-    fun getRowList(application: Application): LiveData<Facts> {
-        val data = MutableLiveData<Facts>()
-        getInstance(application).retrofit?.create(ApiService::class.java)?.getFactList()
-            ?.enqueue(object : Callback<Facts> {
-                override fun onResponse(call: Call<Facts>, response: Response<Facts>) {
-                    data.setValue(response.body())
-                }
-
-                override fun onFailure(call: Call<Facts>, t: Throwable) {
-                    data.setValue(null)
-                }
-            })
-        return data
-    }
 
 }

@@ -5,13 +5,11 @@ import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
 import com.cts.myassignment.R
 import com.cts.myassignment.databinding.RecyclerListItemBinding
 import com.cts.myassignment.service.model.Row
-
+import com.squareup.picasso.NetworkPolicy
+import com.squareup.picasso.Picasso
 
 /**
  *    Adapter with Databinging
@@ -30,15 +28,7 @@ class RecyclerAdapter(private val context: Context, private val rowList: Mutable
 
     override fun onBindViewHolder(holder: RecyclerAdapter.UserViewHolder, position: Int) {
         holder.binding.row = rowList?.get(position)
-
-        val options = RequestOptions()
-            .centerCrop()
-            .error(R.drawable.ic_no_image)
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-
-        Glide.with(context).load(rowList?.get(position).imageHref).apply(options)
-            .into(holder.binding.imgView)
-        holder.binding.executePendingBindings()
+        Picasso.with(context).load(rowList?.get(position).imageHref).networkPolicy(NetworkPolicy.OFFLINE).error(R.drawable.ic_no_image).into(holder.binding.imgView)
 
     }
 
